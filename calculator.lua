@@ -19,7 +19,7 @@ local UICorner_5 = Instance.new("UICorner")
 
 --Properties:
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Parent = game:GetService("CoreGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Frame.Parent = ScreenGui
@@ -106,12 +106,6 @@ UICorner_5.Parent = Close
 
 --Scripting/Functions:
 
-game:GetService("StarterGui"):SetCore("SendNotification", {
-	Title = "Loaded",
-	Text = "Loaded script sucessfuly!",
-	Duration = 10,
-})
-
 local Debounce = false
 
 Calculate.Activated:Connect(function()
@@ -125,11 +119,11 @@ Calculate.Activated:Connect(function()
 			local A5 = A4*15
 			local B1 = A5/60
 			local B2 = B1/60
-			game:GetService("StarterGui"):SetCore("SendNotification", {
-				Title = "Calculated Sucessfuly",
-				Text = "In minutes: "..B1.."\nIn hours: "..B2,
-				Duration = 10,
-			})
+			Calculate.Text = "In minutes: "..B1.."\nIn hours: "..B2
+			wait(5)
+			Calculate.Text = "Calculate"
+			Debounce = false
+		else
 			Debounce = false
 		end
 	end
